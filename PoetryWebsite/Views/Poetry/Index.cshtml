@@ -1,0 +1,29 @@
+﻿@model IEnumerable<PoetryWebsite.Models.Poetry>
+
+<h1>Posted Poems</h1>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Post a New Poem</a>
+</p>
+
+<div class="poems-container">
+    @foreach (var poem in Model)
+    {
+        <div class="poem">
+            <h4 class="poem-title">@poem.Title</h4>
+
+            <figure>
+                <blockquote class="blockquote">
+                    <p class="mb-0">@Html.Raw(poem.Content.Replace("\n", "<br>"))</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    by @poem.Author
+                </figcaption>
+            </figure>
+
+            @* <form asp-action="Delete" asp-route-id="@poem.Id" method="post">
+                <button type="submit" class="btn btn-primary btn-sm">Delete</button>
+            </form> *@
+        </div>
+    }
+</div>
